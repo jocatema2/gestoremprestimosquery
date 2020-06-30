@@ -30,7 +30,6 @@ module.exports = {
   createEmprestimo : function(response) {
 
     // aqui define-se o ID à mão, pois este Empréstimo já existe e é para se dar update ao estado
-    console.log(response.estado)
     var emprestimo = new Emprestimo({
         _id: new ObjectID.createFromHexString(response.idEmp),
         inicio: response.inicio,
@@ -43,7 +42,7 @@ module.exports = {
     console.log("[INFO][emprestimoServices.services.js - createEmprestimoDefinitivo] - Emprestimo para ser guardado: " + JSON.stringify(emprestimo));
 
     // Save Emprestimo in the database
-    emprestimo.updateOne({ estado: emprestimo.estado })
+    emprestimo.update({ estado: emprestimo.estado })
       .then(data => {
         console.log("[INFO][emprestimoServices.services.js - createEmprestimoDefinitivo] - Emprestimo guardado com sucesso: " + data);
       }).catch(err => {
