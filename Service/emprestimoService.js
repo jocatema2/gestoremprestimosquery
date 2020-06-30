@@ -30,6 +30,7 @@ module.exports = {
   createEmprestimo : function(response) {
 
     // aqui define-se o ID à mão, pois este Empréstimo já existe e é para se dar update ao estado
+    console.log(response.estado)
     var emprestimo = new Emprestimo({
         _id: new ObjectID.createFromHexString(response.idEmp),
         inicio: response.inicio,
