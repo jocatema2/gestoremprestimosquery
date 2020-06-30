@@ -20,20 +20,18 @@ module.exports = {
           channel.assertQueue(gestorEmprestimosQuery_queue, {
               durable: false
           });
-
-          console.log("Hallo", gestorEmprestimosQuery_queue);          
-
+       
           channel.consume(gestorEmprestimosQuery_queue, function(msg) {
               var response = JSON.parse(msg.content.toString());
               console.log(response)
               switch(response.eventType) {
-                case "EMPRESTIMO_PENDING":
+                case 'EMPRESTIMO_PENDING':
                   Service.createEmprestimoPendente(response);
                   break;
-                case "EMPRESTIMO_CREATED":
+                case 'EMPRESTIMO_CREATED':
                   Service.createEmprestimo(response);
                   break;
-                case "CLOSE_EMPRESTIMO":
+                case 'CLOSE_EMPRESTIMO':
                   Service.closeEmprestimo(response);
                   break;
                 default:
