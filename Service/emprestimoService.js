@@ -42,7 +42,7 @@ module.exports = {
     console.log("[INFO][emprestimoServices.services.js - createEmprestimoDefinitivo] - Emprestimo para ser guardado: " + JSON.stringify(emprestimo));
 
     // Save Emprestimo in the database
-    emprestimo.update({ estado: emprestimo.estado })
+    emprestimo.save()
       .then(data => {
         console.log("[INFO][emprestimoServices.services.js - createEmprestimoDefinitivo] - Emprestimo guardado com sucesso: " + data);
       }).catch(err => {
